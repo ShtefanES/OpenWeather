@@ -1,0 +1,472 @@
+{
+    "cod": "200",
+    "message": 0.0035,
+    "cnt": 13,
+    "list": [
+        {
+            "dt": 1542704400,
+            "main": {
+                "temp": -5.54,
+                "temp_min": -6.06,
+                "temp_max": -5.54,
+                "pressure": 1020.18,
+                "sea_level": 1036.96,
+                "grnd_level": 1020.18,
+                "humidity": 88,
+                "temp_kf": 0.52
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13d"
+                }
+            ],
+            "clouds": {
+                "all": 88
+            },
+            "wind": {
+                "speed": 6.16,
+                "deg": 218.503
+            },
+            "snow": {
+                "3h": 0.793
+            },
+            "sys": {
+                "pod": "d"
+            },
+            "dt_txt": "2018-11-20 09:00:00"
+        },
+        {
+            "dt": 1542715200,
+            "main": {
+                "temp": -5.73,
+                "temp_min": -6.12,
+                "temp_max": -5.73,
+                "pressure": 1019.09,
+                "sea_level": 1035.93,
+                "grnd_level": 1019.09,
+                "humidity": 88,
+                "temp_kf": 0.39
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 5.57,
+                "deg": 223.007
+            },
+            "snow": {
+                "3h": 0.71825
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-20 12:00:00"
+        },
+        {
+            "dt": 1542726000,
+            "main": {
+                "temp": -6.3,
+                "temp_min": -6.57,
+                "temp_max": -6.3,
+                "pressure": 1018.59,
+                "sea_level": 1035.43,
+                "grnd_level": 1018.59,
+                "humidity": 92,
+                "temp_kf": 0.26
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 4.96,
+                "deg": 225.008
+            },
+            "snow": {
+                "3h": 0.45375
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-20 15:00:00"
+        },
+        {
+            "dt": 1542736800,
+            "main": {
+                "temp": -6.91,
+                "temp_min": -7.04,
+                "temp_max": -6.91,
+                "pressure": 1018.05,
+                "sea_level": 1034.88,
+                "grnd_level": 1018.05,
+                "humidity": 90,
+                "temp_kf": 0.13
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 4.89,
+                "deg": 219.002
+            },
+            "snow": {
+                "3h": 0.255
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-20 18:00:00"
+        },
+        {
+            "dt": 1542747600,
+            "main": {
+                "temp": -7.27,
+                "temp_min": -7.27,
+                "temp_max": -7.27,
+                "pressure": 1016.9,
+                "sea_level": 1033.76,
+                "grnd_level": 1016.9,
+                "humidity": 92,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 4.47,
+                "deg": 214.51
+            },
+            "snow": {
+                "3h": 0.3625
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-20 21:00:00"
+        },
+        {
+            "dt": 1542758400,
+            "main": {
+                "temp": -7.05,
+                "temp_min": -7.05,
+                "temp_max": -7.05,
+                "pressure": 1016.07,
+                "sea_level": 1032.81,
+                "grnd_level": 1016.07,
+                "humidity": 90,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 88
+            },
+            "wind": {
+                "speed": 4.82,
+                "deg": 205.502
+            },
+            "snow": {
+                "3h": 0.645
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-21 00:00:00"
+        },
+        {
+            "dt": 1542769200,
+            "main": {
+                "temp": -6.71,
+                "temp_min": -6.71,
+                "temp_max": -6.71,
+                "pressure": 1015.39,
+                "sea_level": 1032.04,
+                "grnd_level": 1015.39,
+                "humidity": 92,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13d"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 5.23,
+                "deg": 206.006
+            },
+            "snow": {
+                "3h": 0.8275
+            },
+            "sys": {
+                "pod": "d"
+            },
+            "dt_txt": "2018-11-21 03:00:00"
+        },
+        {
+            "dt": 1542780000,
+            "main": {
+                "temp": -5.78,
+                "temp_min": -5.78,
+                "temp_max": -5.78,
+                "pressure": 1014.51,
+                "sea_level": 1031.06,
+                "grnd_level": 1014.51,
+                "humidity": 90,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13d"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 5.08,
+                "deg": 213.002
+            },
+            "snow": {
+                "3h": 0.5875
+            },
+            "sys": {
+                "pod": "d"
+            },
+            "dt_txt": "2018-11-21 06:00:00"
+        },
+        {
+            "dt": 1542790800,
+            "main": {
+                "temp": -5.21,
+                "temp_min": -5.21,
+                "temp_max": -5.21,
+                "pressure": 1013.28,
+                "sea_level": 1029.68,
+                "grnd_level": 1013.28,
+                "humidity": 90,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13d"
+                }
+            ],
+            "clouds": {
+                "all": 88
+            },
+            "wind": {
+                "speed": 4.76,
+                "deg": 209.001
+            },
+            "snow": {
+                "3h": 0.445
+            },
+            "sys": {
+                "pod": "d"
+            },
+            "dt_txt": "2018-11-21 09:00:00"
+        },
+        {
+            "dt": 1542801600,
+            "main": {
+                "temp": -5.14,
+                "temp_min": -5.14,
+                "temp_max": -5.14,
+                "pressure": 1012.44,
+                "sea_level": 1028.96,
+                "grnd_level": 1012.44,
+                "humidity": 89,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 88
+            },
+            "wind": {
+                "speed": 5.11,
+                "deg": 205.502
+            },
+            "snow": {
+                "3h": 0.4275
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-21 12:00:00"
+        },
+        {
+            "dt": 1542812400,
+            "main": {
+                "temp": -5.11,
+                "temp_min": -5.11,
+                "temp_max": -5.11,
+                "pressure": 1011.51,
+                "sea_level": 1028.04,
+                "grnd_level": 1011.51,
+                "humidity": 89,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 88
+            },
+            "wind": {
+                "speed": 5.17,
+                "deg": 210.003
+            },
+            "snow": {
+                "3h": 0.3925
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-21 15:00:00"
+        },
+        {
+            "dt": 1542823200,
+            "main": {
+                "temp": -5.05,
+                "temp_min": -5.05,
+                "temp_max": -5.05,
+                "pressure": 1010.46,
+                "sea_level": 1026.95,
+                "grnd_level": 1010.46,
+                "humidity": 89,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 88
+            },
+            "wind": {
+                "speed": 5.21,
+                "deg": 209.505
+            },
+            "snow": {
+                "3h": 0.4575
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-21 18:00:00"
+        },
+        {
+            "dt": 1542834000,
+            "main": {
+                "temp": -4.54,
+                "temp_min": -4.54,
+                "temp_max": -4.54,
+                "pressure": 1009.13,
+                "sea_level": 1025.64,
+                "grnd_level": 1009.13,
+                "humidity": 92,
+                "temp_kf": 0
+            },
+            "weather": [
+                {
+                    "id": 600,
+                    "main": "Snow",
+                    "description": "light snow",
+                    "icon": "13n"
+                }
+            ],
+            "clouds": {
+                "all": 92
+            },
+            "wind": {
+                "speed": 5.17,
+                "deg": 209.002
+            },
+            "snow": {
+                "3h": 0.425
+            },
+            "sys": {
+                "pod": "n"
+            },
+            "dt_txt": "2018-11-21 21:00:00"
+        }
+    ],
+    "city": {
+        "id": 1496747,
+        "name": "Novosibirsk",
+        "coord": {
+            "lat": 55.0411,
+            "lon": 82.9344
+        },
+        "country": "RU",
+        "population": 1419007
+    }
+}
