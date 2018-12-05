@@ -2,7 +2,6 @@ package ru.neoanon.openweather.view.mainscreen
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -13,9 +12,10 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
-import ru.neoanon.openweather.databinding.ActivityMainBinding
 import ru.neoanon.openweather.view.places.PlacesFragment
 import ru.neoanon.openweather.view.settings.SettingsActivity
 import javax.inject.Inject
@@ -31,13 +31,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        drawerLayout = binding.drawerLayout
+        setContentView(R.layout.activity_main)
+        drawerLayout = drawer_layout
         (application as App).getAppComponent().inject(this)
 
         commitFragment(R.id.main_content_frame, MainFragment())
         commitFragment(R.id.navig_content_frame, PlacesFragment())
-        val toolbar = binding.toolbarContainer.toolbar
+        val toolbar = toolbar_container.toolbar
         setSupportActionBar(toolbar)
         initNavigationDrawer(drawerLayout, toolbar)
 

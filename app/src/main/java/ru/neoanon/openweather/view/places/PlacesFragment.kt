@@ -1,7 +1,6 @@
 package ru.neoanon.openweather.view.places
 
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
@@ -12,10 +11,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_places.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
 import ru.neoanon.openweather.data.source.local.db.location.RegionLocation
-import ru.neoanon.openweather.databinding.FragmentPlacesBinding
 import ru.neoanon.openweather.utils.clickView
 import ru.neoanon.openweather.utils.searchViewCloseListener
 import ru.neoanon.openweather.utils.searchViewFocusChangeListener
@@ -44,14 +43,15 @@ class PlacesFragment : Fragment() {
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var locationViewModel: LocationViewModel
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentPlacesBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_places, container, false
-        )
-        searchView = binding.searchView
-        tvTitle = binding.tvNavigationTitle
-        ivArrowBack = binding.ivNavigationArrowBack
-        suggestionRecyclerView = binding.suggestionRecyclerView
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_places, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        searchView = view.search_view
+        tvTitle = view.tv_navigation_title
+        ivArrowBack = view.iv_navigation_arrow_back
+        suggestionRecyclerView = view.suggestion_recycler_view
         suggestionsAdapter = SuggestionsAdapter { item: RegionLocation ->
             minimizingSearchIcon()
             weatherViewModel.closeDrawer()
@@ -61,7 +61,7 @@ class PlacesFragment : Fragment() {
             )
         }
         suggestionRecyclerView.setAdapter(suggestionsAdapter)
-        placesRecyclerView = binding.placesRecyclerView
+        placesRecyclerView = view.places_recycler_view
         placeAdapter = PlaceAdapter({ place: RegionLocation ->
             minimizingSearchIcon()
             weatherViewModel.closeDrawer()
@@ -76,7 +76,6 @@ class PlacesFragment : Fragment() {
             )
         })
         placesRecyclerView.adapter = placeAdapter
-        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

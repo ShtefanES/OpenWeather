@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <LinearLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <View
+    <View
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
+            android:layout_height="24dp"/>
 
-        <android.support.constraint.ConstraintLayout
+    <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/navToolbarBackground"
             android:orientation="horizontal">
 
-            <ImageView
+        <ImageView
                 android:id="@+id/iv_navigation_arrow_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,9 +28,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_arrow_back" />
+                app:srcCompat="@drawable/ic_arrow_back"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tv_navigation_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,12 +43,12 @@
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/searchView"
+                app:layout_constraintEnd_toStartOf="@+id/search_view"
                 app:layout_constraintStart_toEndOf="@+id/iv_navigation_arrow_back"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
-            <android.support.v7.widget.SearchView
-                android:id="@+id/searchView"
+        <android.support.v7.widget.SearchView
+                android:id="@+id/search_view"
                 style="@style/SearchViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -59,10 +58,10 @@
                 android:maxLines="1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </android.support.constraint.ConstraintLayout>
+                app:layout_constraintTop_toTopOf="parent"/>
+    </android.support.constraint.ConstraintLayout>
 
-        <android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
             android:id="@+id/suggestion_recycler_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,13 +69,12 @@
             android:layout_marginTop="16dp"
             android:visibility="gone"
             app:layoutManager="LinearLayoutManager"
-            tools:visibility="visible" />
+            tools:visibility="visible"/>
 
-        <android.support.v7.widget.RecyclerView
+    <android.support.v7.widget.RecyclerView
             android:id="@+id/places_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
-            app:layoutManager="LinearLayoutManager" />
-    </LinearLayout>
-</layout>
+            app:layoutManager="LinearLayoutManager"/>
+</LinearLayout>

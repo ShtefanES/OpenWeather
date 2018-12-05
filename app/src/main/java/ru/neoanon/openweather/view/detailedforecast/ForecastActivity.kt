@@ -1,12 +1,12 @@
 package ru.neoanon.openweather.view.detailedforecast
 
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import ru.neoanon.openweather.R
-import ru.neoanon.openweather.databinding.ActivityForecastBinding
+import kotlinx.android.synthetic.main.activity_forecast.*
+import kotlinx.android.synthetic.main.toolbar_with_tabs_layout.view.*
 
 /**
  *Created by eshtefan on  13.11.2018.
@@ -16,8 +16,9 @@ class ForecastActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityForecastBinding = DataBindingUtil.setContentView(this, R.layout.activity_forecast)
-        val toolbar = binding.toolbarContainer.toolbar
+        setContentView(R.layout.activity_forecast)
+
+        val toolbar = toolbar_container.toolbar
         setupToolbar(toolbar)
 
         val selectedForecastPosition = intent.getIntExtra(ForecastPagerFragment.FORECAST_POSITION_KEY, -1)

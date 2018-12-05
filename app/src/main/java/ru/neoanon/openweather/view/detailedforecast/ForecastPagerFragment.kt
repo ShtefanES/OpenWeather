@@ -1,7 +1,6 @@
 package ru.neoanon.openweather.view.detailedforecast
 
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -14,7 +13,8 @@ import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
-import ru.neoanon.openweather.databinding.FragmentForecastPagerBinding
+import kotlinx.android.synthetic.main.fragment_forecast_pager.view.*
+import kotlinx.android.synthetic.main.toolbar_with_tabs_layout.*
 import javax.inject.Inject
 
 /**
@@ -53,22 +53,20 @@ class ForecastPagerFragment : Fragment() {
         bundle?.getLong(REGION_ID_KEY)?.let { regionId = it }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentForecastPagerBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_forecast_pager, container, false
-        )
-        viewPager = binding.viewpager
-        progressBar = binding.progressBar
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_forecast_pager, container, false)
 
-        return binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewPager = view.viewpager
+        progressBar = view.progress_bar
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         (activity?.application as App).getAppComponent().inject(this)
 
-        val tabLayout = activity?.findViewById(R.id.tab_layout) as TabLayout
-        tabLayout.setupWithViewPager(viewPager)
+        activity?.tab_layout?.setupWithViewPager(viewPager)
 
         val forecastViewModel =
             ViewModelProviders.of(activity!!, forecastViewModelFactory).get(DailyForecastViewModel::class.java)

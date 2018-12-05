@@ -1,27 +1,27 @@
 package ru.neoanon.openweather.view.aboutapp
 
-import android.databinding.DataBindingUtil
+
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.MenuItem
 import ru.neoanon.openweather.BuildConfig
 import ru.neoanon.openweather.R
-import ru.neoanon.openweather.databinding.ActivityAboutAppBinding
+import kotlinx.android.synthetic.main.activity_about_app.*
 
 class AboutAppActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityAboutAppBinding = DataBindingUtil.setContentView(this, R.layout.activity_about_app)
+        setContentView(R.layout.activity_about_app)
 
-        binding.tvVersionAppAndVersionBuild.text =
+        tv_version_app_and_version_build.text =
                 getString(
                     R.string.version_app_and_version_build,
                     BuildConfig.VERSION_NAME,
                     BuildConfig.VERSION_CODE.toString()
                 )
-        binding.tvSourceWeathers.movementMethod =
+        tv_source_weathers.movementMethod =
                 LinkMovementMethod.getInstance()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <LinearLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -13,20 +12,20 @@
         android:paddingBottom="8dp"
         tools:background="@android:color/black">
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/wild_block"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+        <ImageView
                 android:id="@+id/icon_wind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/ic_wild" />
+                app:srcCompat="@drawable/ic_wild"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tv_wind"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -35,17 +34,17 @@
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
-                tools:text="12 m/s" />
+                tools:text="12 m/s"/>
 
-            <ImageView
+        <ImageView
                 android:id="@+id/icon_wind_direct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                tools:srcCompat="@drawable/ic_se" />
-        </LinearLayout>
+                tools:srcCompat="@drawable/ic_se"/>
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/pressure_block"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,14 +52,14 @@
             android:layout_marginBottom="21dp"
             android:orientation="horizontal">
 
-            <ImageView
+        <ImageView
                 android:id="@+id/icon_pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/ic_pressure" />
+                app:srcCompat="@drawable/ic_pressure"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tv_pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -69,23 +68,23 @@
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
-                tools:text="120 mm.rt.st" />
-        </LinearLayout>
+                tools:text="120 mm.rt.st"/>
+    </LinearLayout>
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/humidity_block"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+        <ImageView
                 android:id="@+id/icon_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                app:srcCompat="@drawable/ic_humidity" />
+                app:srcCompat="@drawable/ic_humidity"/>
 
-            <TextView
+        <TextView
                 android:id="@+id/tv_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -94,8 +93,6 @@
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/white"
                 android:textSize="14sp"
-                tools:text="50%" />
-        </LinearLayout>
-
+                tools:text="50%"/>
     </LinearLayout>
-</layout>
+</LinearLayout>

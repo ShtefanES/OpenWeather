@@ -1,12 +1,12 @@
 package ru.neoanon.openweather.view.places
 
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item_suggestion.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.data.source.local.db.location.RegionLocation
-import ru.neoanon.openweather.databinding.ItemSuggestionBinding
 
 /**
  *Created by eshtefan on  14.11.2018.
@@ -18,32 +18,30 @@ class SuggestionsAdapter(val clickListener: SuggestionItemClicked) :
     RecyclerView.Adapter<SuggestionsAdapter.MyViewHolder>() {
     private val suggestionList = arrayListOf<RegionLocation>()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-        val binding: ItemSuggestionBinding = DataBindingUtil.inflate(inflater, R.layout.item_suggestion, parent, false)
-        return SuggestionsAdapter.MyViewHolder(binding, this)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder =
+        SuggestionsAdapter.MyViewHolder(
+            LayoutInflater.from(parent.context).inflate(
+                R.layout.item_suggestion,
+                parent,
+                false
+            ), this
+        )
 
     override fun getItemCount(): Int = suggestionList.size
 
-    override fun onBindViewHolder(p0: MyViewHolder, p1: Int) {
-        val regionLocation = suggestionList[p1]
-        p0.bind(regionLocation)
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val regionLocation = suggestionList[position]
+        holder.root.tv_location_name.text = regionLocation.name
     }
 
     fun clear() = this.suggestionList.clear()
 
     fun add(suggestionList: List<RegionLocation>) = this.suggestionList.addAll(suggestionList)
 
-    class MyViewHolder(val binding: ItemSuggestionBinding, adapter: SuggestionsAdapter) :
-        RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val root: View, adapter: SuggestionsAdapter) :
+        RecyclerView.ViewHolder(root) {
         init {
-            binding.root.setOnClickListener { adapter.clickListener.invoke(adapter.suggestionList[adapterPosition]) }
-        }
-
-        fun bind(regionLocation: RegionLocation) {
-            binding.regionLocation = regionLocation
-            binding.executePendingBindings()
+            root.setOnClickListener { adapter.clickListener.invoke(adapter.suggestionList[adapterPosition]) }
         }
     }
 }

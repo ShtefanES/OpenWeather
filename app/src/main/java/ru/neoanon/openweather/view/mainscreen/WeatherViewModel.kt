@@ -28,10 +28,13 @@ class WeatherViewModel(private val forecastsRepo: IForecastsRepo, private val iR
     val regionWasChangedSub = PublishSubject.create<Long>()
     val progress = BehaviorSubject.createDefault<Boolean>(false)
     private val errorSub = PublishSubject.create<Throwable>()
-    private val isCurrentRegionAvailable = BehaviorSubject.createDefault<Boolean>(false)
+    private val isAllowedToGetCurrentLocation = BehaviorSubject.createDefault<Boolean>(false)
     private val selectedRegionNameSub = BehaviorSubject.createDefault<String>("Unknown")
     val selectedRegionIdSub = BehaviorSubject.createDefault<Long>(CURRENT_LOCATION_ID)
 
+    fun isAllowedToGetCurrentLocation(isAllowed: Boolean) {
+        isAllowedToGetCurrentLocation.onNext(isAllowed)
+    }
 
     fun subscribeToData(regionId: Long): Observable<RegionLocation> =
         Observable.fromCallable { regionId }
@@ -60,7 +63,6 @@ class WeatherViewModel(private val forecastsRepo: IForecastsRepo, private val iR
                 progress.onNext(false)
             }
             .doOnNext { regionLocation ->
-                isCurrentRegionAvailable.onNext((regionLocation.id == CURRENT_LOCATION_ID))
                 selectedRegionIdSub.onNext(regionLocation.id)
                 progress.onNext(false);
             }
@@ -106,9 +108,11 @@ class WeatherViewModel(private val forecastsRepo: IForecastsRepo, private val iR
     fun deleteRegionLocation(regionId: Long): Observable<RegionLocation> =
         forecastsRepo.deleteAllInfoForThisRegion(regionId)
             .andThen(Observable.just(regionId))
-            .filter { regionId1 -> regionId1 == selectedRegionIdSub.value }
+            .filter { regionId1 ->
+                regionId1 == selectedRegionIdSub.value
+            }
             .filter {
-                val isAvailable = isCurrentRegionAvailable.value
+                val isAvailable = isAllowedToGetCurrentLocation.value
                 if (!isAvailable) {
                     forecastsRepo.makeCacheDirty()
                     selectedRegionNameSub.onNext("Unknown")

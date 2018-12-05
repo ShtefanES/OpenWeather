@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat.checkSelfPermission
@@ -19,9 +18,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.fragment_main.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
-import ru.neoanon.openweather.databinding.FragmentMainBinding
 import ru.neoanon.openweather.utils.CURRENT_LOCATION_ID
 import ru.neoanon.openweather.view.detailedforecast.ForecastActivity
 import ru.neoanon.openweather.view.detailedforecast.ForecastPagerFragment
@@ -53,33 +52,31 @@ class MainFragment : Fragment() {
     @Inject
     lateinit var weatherViewModelFactory: WeatherViewModelFactory
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentMainBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_main, container, false
-        )
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
+        inflater.inflate(R.layout.fragment_main, container, false)
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         (activity?.application as App).getAppComponent().inject(this)
 
-        val dailyForecastRecyclerView = binding.shortDailyForecastRecyclerView
+        val dailyForecastRecyclerView = view.short_daily_forecast_recycler_view
         dailyForecastRecyclerView.adapter = dailyForecastAdapter
         dailyForecastRecyclerView.isNestedScrollingEnabled = false
 
-        val hourlyForecastRecyclerView = binding.hourlyForecastRecyclerView
+        val hourlyForecastRecyclerView = view.hourly_forecast_recycler_view
         hourlyForecastRecyclerView.adapter = hourlyForecastAdapter
         val horizontalLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         hourlyForecastRecyclerView.layoutManager = horizontalLayoutManager
 
-        swipeRefresh = binding.swipeContainer
-        tvTemp = binding.tvTemp
-        iconWeather = binding.iconWeather
-        tvWeatherDescription = binding.tvWeatherDescription
-        ivWeatherBackground = binding.ivWeatherBackground
-        currentWeatherBlock = binding.currentWeatherBlock
+        swipeRefresh = view.swipe_container
+        tvTemp = view.tv_temp
+        iconWeather = view.icon_weather
+        tvWeatherDescription = view.tv_weather_description
+        ivWeatherBackground = view.iv_weather_background
+        currentWeatherBlock = view.current_weather_block
 
         ivWeatherBackground.setImageResource(R.drawable.ic_background_clear)
         changeWeatherBackgroundScale(ivWeatherBackground)
-
-        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -122,9 +119,10 @@ class MainFragment : Fragment() {
             .subscribe { integer -> showMessage(integer) })
 
         if (selectedRegionId == CURRENT_LOCATION_ID) {
-            if (!isPermissionGranted(activity!!)) {
+            if (isPermissionDenied(activity!!)) {
                 requestPermission(activity!!)
             } else {
+                weatherViewModel.isAllowedToGetCurrentLocation(true)
                 subscribeToData(selectedRegionId)
             }
         } else {
@@ -135,9 +133,10 @@ class MainFragment : Fragment() {
 
         swipeRefresh.setOnRefreshListener {
             if (selectedRegionId == CURRENT_LOCATION_ID) {
-                if (!isPermissionGranted(activity!!)) {
+                if (isPermissionDenied(activity!!)) {
                     requestPermission(activity!!)
                 } else {
+                    weatherViewModel.isAllowedToGetCurrentLocation(true)
                     subscribeToData(selectedRegionId)
                 }
             } else {
@@ -152,8 +151,10 @@ class MainFragment : Fragment() {
                 if (grantResults.isNotEmpty()
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED
                 ) {
+                    weatherViewModel.isAllowedToGetCurrentLocation(true)
                     subscribeToData(CURRENT_LOCATION_ID)
                 } else {
+                    weatherViewModel.isAllowedToGetCurrentLocation(false)
                     weatherViewModel.progress.onNext(false)
                 }
             }
@@ -167,8 +168,8 @@ class MainFragment : Fragment() {
         swipeRefresh.setOnRefreshListener(null)
     }
 
-    private fun isPermissionGranted(context: Context): Boolean =
-        (checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+    private fun isPermissionDenied(context: Context): Boolean =
+        (checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
 
     private fun requestPermission(context: Context) {
         AlertDialog.Builder(context)
@@ -235,12 +236,13 @@ class MainFragment : Fragment() {
 
 
     private fun changeWeatherBackgroundScale(ivBackground: ImageView) {
-        val matrix = ivBackground.imageMatrix
-        val imageWidth: Float = ivBackground.drawable.intrinsicWidth.toFloat()
-        val screenWidth: Float = resources.displayMetrics.widthPixels.toFloat()
-        val scaleRatio = if (screenWidth < 500f) screenWidth / imageWidth + 1.0f else screenWidth / imageWidth + 0.2f
-        matrix.postScale(scaleRatio, scaleRatio)
-        ivBackground.imageMatrix = matrix
+        ivBackground.imageMatrix = ivBackground.imageMatrix.apply {
+            val imageWidth: Float = ivBackground.drawable.intrinsicWidth.toFloat()
+            val screenWidth: Float = resources.displayMetrics.widthPixels.toFloat()
+            val scaleRatio =
+                if (screenWidth < 500f) screenWidth / imageWidth + 1.0f else screenWidth / imageWidth + 0.2f
+            this.postScale(scaleRatio, scaleRatio)
+        }
     }
 
     private fun showMessage(resIdString: Int) =

@@ -2,16 +2,15 @@ package ru.neoanon.openweather.view.settings
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import android.widget.RadioButton
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_settings.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
-import ru.neoanon.openweather.databinding.ActivitySettingsBinding
 import ru.neoanon.openweather.model.UnitsOfWeather
 import ru.neoanon.openweather.model.enumerations.PressureType
 import ru.neoanon.openweather.model.enumerations.TempType
@@ -36,17 +35,17 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivitySettingsBinding = DataBindingUtil.setContentView(this, R.layout.activity_settings)
+        setContentView(R.layout.activity_settings)
 
-        rbCelsius = binding.rbCelsius
-        rbKelvin = binding.rbKelvin
-        rbPressureMmHg = binding.rbPressureMmHg
-        rbPressureHectopascal = binding.rbPressureHectopascal
+        rbCelsius = rb_celsius
+        rbKelvin = rb_kelvin
+        rbPressureMmHg = rb_pressure_mm_hg
+        rbPressureHectopascal = rb_pressure_hectopascal
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setTitle(getString(R.string.setting_menu_item))
 
-        binding.rgTemperatureType.setOnCheckedChangeListener { _, i ->
+        rg_temperature_type.setOnCheckedChangeListener { _, i ->
             when (i) {
                 rbCelsius.id -> {
                     rbCelsius.setTextColor(ContextCompat.getColor(this, R.color.colorCheckedText))
@@ -61,7 +60,7 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        binding.rgPressureType.setOnCheckedChangeListener { _, i ->
+        rg_pressure_type.setOnCheckedChangeListener { _, i ->
             when (i) {
                 rbPressureMmHg.id -> {
                     rbPressureMmHg.setTextColor(ContextCompat.getColor(this, R.color.colorCheckedText))
@@ -77,7 +76,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
 
-        binding.tvAboutApp.setOnClickListener {
+        tv_about_app.setOnClickListener {
             startActivity(
                 Intent(this, AboutAppActivity::class.java)
             )

@@ -1,13 +1,12 @@
 package ru.neoanon.openweather.view.places
 
-import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.item_place.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.data.source.local.db.location.RegionLocation
-import ru.neoanon.openweather.databinding.ItemPlaceBinding
 import ru.neoanon.openweather.utils.CURRENT_LOCATION_ID
 
 /**
@@ -21,19 +20,19 @@ class PlaceAdapter(val clickListener: PlaceItemClicked, val deleteItemClickListe
     RecyclerView.Adapter<PlaceAdapter.MyViewHolder>() {
     private val placesList = arrayListOf<RegionLocation>()
 
-    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyViewHolder {
-        val inflater = LayoutInflater.from(viewGroup.context)
-        val binding: ItemPlaceBinding = DataBindingUtil.inflate(inflater, R.layout.item_place, viewGroup, false)
-        return PlaceAdapter.MyViewHolder(binding, this)
-    }
+    override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): MyViewHolder =
+        PlaceAdapter.MyViewHolder(
+            LayoutInflater.from(viewGroup.context).inflate(R.layout.item_place, viewGroup, false),
+            this
+        )
 
     override fun getItemCount(): Int = placesList.size
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val regionLocation = placesList[position]
-        holder.bind(regionLocation)
-        val tvCurrentLocationTitle = holder.binding.tvCurrentLocationTitle
-        val ivTrashCan = holder.binding.ivTrashCan
+        holder.root.tv_location_name.text = regionLocation.name
+        val tvCurrentLocationTitle = holder.root.tv_current_location_title
+        val ivTrashCan = holder.root.iv_trash_can
         if (regionLocation.id == CURRENT_LOCATION_ID) {
             tvCurrentLocationTitle.visibility = View.VISIBLE
             ivTrashCan.visibility = View.INVISIBLE
@@ -47,19 +46,14 @@ class PlaceAdapter(val clickListener: PlaceItemClicked, val deleteItemClickListe
 
     fun add(placesList: List<RegionLocation>) = this.placesList.addAll(placesList)
 
-    class MyViewHolder(val binding: ItemPlaceBinding, adapter: PlaceAdapter) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val root: View, adapter: PlaceAdapter) : RecyclerView.ViewHolder(root) {
         init {
-            binding.root.setOnClickListener {
+            root.setOnClickListener {
                 adapter.clickListener.invoke(adapter.placesList[adapterPosition])
             }
-            binding.ivTrashCan.setOnClickListener {
+            root.iv_trash_can.setOnClickListener {
                 adapter.deleteItemClickListener.invoke(adapter.placesList[adapterPosition].id)
             }
-        }
-
-        fun bind(regionLocation: RegionLocation) {
-            binding.regionLocation = regionLocation
-            binding.executePendingBindings()
         }
     }
 }

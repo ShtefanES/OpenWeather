@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v4.widget.NestedScrollView
+<android.support.v4.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/nested_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/description_block"
                 android:layout_width="match_parent"
                 android:layout_height="72dp"
@@ -21,14 +21,14 @@
                 android:layout_marginEnd="16dp"
                 android:orientation="horizontal">
 
-                <ImageView
+            <ImageView
                     android:id="@+id/icon_weather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    tools:srcCompat="@drawable/d10" />
+                    tools:srcCompat="@drawable/d10"/>
 
-                <TextView
+            <TextView
                     android:id="@+id/tv_weather_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -37,51 +37,51 @@
                     android:paddingEnd="8dp"
                     android:textColor="@android:color/black"
                     android:textSize="18sp"
-                    tools:text="Clear" />
-            </LinearLayout>
+                    tools:text="Clear"/>
+        </LinearLayout>
 
-            <View
+        <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="@color/colorDeliveryLine" />
+                android:background="@color/colorDeliveryLine"/>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/temperature_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/title_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/ic_temperature" />
+                        app:srcCompat="@drawable/ic_temperature"/>
 
-                    <TextView
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:paddingStart="16dp"
                         android:paddingEnd="8dp"
                         android:text="@string/temperature_title"
-                        android:textSize="24sp" />
-                </LinearLayout>
+                        android:textSize="24sp"/>
+            </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/value_of_temperature"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:weightSum="100">
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/morning_temperature"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -89,25 +89,25 @@
                         android:orientation="vertical"
                         android:paddingTop="8dp">
 
-                        <TextView
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:paddingBottom="4dp"
                             android:text="@string/morning_title"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"/>
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_morning_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
-                            tools:text="12C" />
-                    </LinearLayout>
+                            tools:text="12C"/>
+                </LinearLayout>
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/day_temperature"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -116,25 +116,25 @@
                         android:paddingStart="8dp"
                         android:paddingTop="8dp">
 
-                        <TextView
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:paddingBottom="4dp"
                             android:text="@string/day_title"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"/>
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_day_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
-                            tools:text="12C" />
-                    </LinearLayout>
+                            tools:text="12C"/>
+                </LinearLayout>
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/evening_temperature"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -143,25 +143,25 @@
                         android:paddingStart="8dp"
                         android:paddingTop="8dp">
 
-                        <TextView
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:paddingBottom="4dp"
                             android:text="@string/evening_title"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"/>
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_evening_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
-                            tools:text="12C" />
-                    </LinearLayout>
+                            tools:text="12C"/>
+                </LinearLayout>
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/night_temperature"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -170,60 +170,60 @@
                         android:paddingStart="8dp"
                         android:paddingTop="8dp">
 
-                        <TextView
+                    <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:paddingBottom="4dp"
                             android:text="@string/night_title"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"/>
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_night_temp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
-                            tools:text="12C" />
-                    </LinearLayout>
+                            tools:text="12C"/>
                 </LinearLayout>
             </LinearLayout>
+        </LinearLayout>
 
-            <View
+        <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="@color/colorDeliveryLine" />
+                android:background="@color/colorDeliveryLine"/>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/wind_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/title_wind"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/ic_wind" />
+                        app:srcCompat="@drawable/ic_wind"/>
 
-                    <TextView
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:paddingStart="16dp"
                         android:paddingEnd="8dp"
                         android:text="@string/wind_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"/>
 
-                    <TextView
+                <TextView
                         android:id="@+id/tv_wind"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -232,63 +232,63 @@
                         android:paddingStart="24dp"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        tools:text="12 m/s" />
+                        tools:text="12 m/s"/>
 
-                    <ImageView
+                <ImageView
                         android:id="@+id/icon_wind_direct"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        tools:srcCompat="@drawable/ic_se_middle" />
-                </LinearLayout>
+                        tools:srcCompat="@drawable/ic_se_middle"/>
             </LinearLayout>
+        </LinearLayout>
 
-            <View
+        <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="@color/colorDeliveryLine" />
+                android:background="@color/colorDeliveryLine"/>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/precipitation_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/title_precipitation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/ic_precipitation" />
+                        app:srcCompat="@drawable/ic_precipitation"/>
 
-                    <TextView
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:paddingStart="16dp"
                         android:paddingEnd="8dp"
                         android:text="@string/precipitation_title"
-                        android:textSize="24sp" />
-                </LinearLayout>
+                        android:textSize="24sp"/>
+            </LinearLayout>
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingTop="8dp"
                     android:weightSum="100">
 
-                    <View
+                <View
                         android:layout_width="56dp"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"/>
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/rain_block"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -297,13 +297,13 @@
                         android:visibility="gone"
                         tools:visibility="visible">
 
-                        <ImageView
+                    <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_rain_daily" />
+                            app:srcCompat="@drawable/ic_rain_daily"/>
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_rain"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -312,10 +312,10 @@
                             android:layout_marginEnd="8dp"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
-                            tools:text="2 mm" />
-                    </LinearLayout>
+                            tools:text="2 mm"/>
+                </LinearLayout>
 
-                    <LinearLayout
+                <LinearLayout
                         android:id="@+id/snow_block"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -324,13 +324,13 @@
                         android:visibility="gone"
                         tools:visibility="visible">
 
-                        <ImageView
+                    <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/ic_snow_daily" />
+                            app:srcCompat="@drawable/ic_snow_daily"/>
 
-                        <TextView
+                    <TextView
                             android:id="@+id/tv_snow"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -339,54 +339,54 @@
                             android:layout_marginEnd="8dp"
                             android:textColor="@android:color/black"
                             android:textSize="18sp"
-                            tools:text="2 mm" />
-                    </LinearLayout>
+                            tools:text="2 mm"/>
+                </LinearLayout>
 
-                    <TextView
+                <TextView
                         android:id="@+id/tv_without_precipitation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/without_precipitation"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        android:visibility="gone" />
-                </LinearLayout>
+                        android:visibility="gone"/>
             </LinearLayout>
+        </LinearLayout>
 
-            <View
+        <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="@color/colorDeliveryLine" />
+                android:background="@color/colorDeliveryLine"/>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/pressure_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/title_pressure"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/ic_pressure_hourly" />
+                        app:srcCompat="@drawable/ic_pressure_hourly"/>
 
-                    <TextView
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:paddingStart="16dp"
                         android:paddingEnd="8dp"
                         android:text="@string/pressure_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"/>
 
-                    <TextView
+                <TextView
                         android:id="@+id/tv_pressure"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -394,44 +394,44 @@
                         android:paddingStart="24dp"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        tools:text="324 mm" />
-                </LinearLayout>
+                        tools:text="324 mm"/>
             </LinearLayout>
+        </LinearLayout>
 
-            <View
+        <View
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="@color/colorDeliveryLine" />
+                android:background="@color/colorDeliveryLine"/>
 
-            <LinearLayout
+        <LinearLayout
                 android:id="@+id/humidity_block"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <LinearLayout
+            <LinearLayout
                     android:id="@+id/title_humidity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageView
+                <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        app:srcCompat="@drawable/ic_humidity_daily" />
+                        app:srcCompat="@drawable/ic_humidity_daily"/>
 
-                    <TextView
+                <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:paddingStart="16dp"
                         android:paddingEnd="8dp"
                         android:text="@string/humidity_title"
-                        android:textSize="24sp" />
+                        android:textSize="24sp"/>
 
-                    <TextView
+                <TextView
                         android:id="@+id/tv_humidity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -439,9 +439,8 @@
                         android:paddingStart="24dp"
                         android:textColor="@android:color/black"
                         android:textSize="18sp"
-                        tools:text="32 %" />
-                </LinearLayout>
+                        tools:text="32 %"/>
             </LinearLayout>
         </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-</layout>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

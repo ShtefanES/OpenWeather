@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <LinearLayout
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="8dp"
             android:weightSum="100">
 
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -23,44 +22,44 @@
                 android:layout_weight="55"
                 android:orientation="horizontal">
 
-                <LinearLayout
+            <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
+                <TextView
                         android:id="@+id/tv_day_of_month"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="14sp"
-                        tools:text="3 september" />
+                        tools:text="3 september"/>
 
-                    <TextView
+                <TextView
                         android:id="@+id/tv_day_of_week"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        tools:text="monday" />
-                </LinearLayout>
+                        tools:text="monday"/>
             </LinearLayout>
+        </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+        <android.support.constraint.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="45"
                 android:orientation="horizontal">
 
-                <ImageView
+            <ImageView
                     android:id="@+id/icon_weather"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="8dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:srcCompat="@drawable/n10" />
+                    tools:srcCompat="@drawable/n10"/>
 
-                <TextView
+            <TextView
                     android:id="@+id/tv_temp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -73,13 +72,12 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="+25" />
-            </android.support.constraint.ConstraintLayout>
-        </LinearLayout>
+                    tools:text="+25"/>
+        </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
-        <View
+    <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorDeliveryLine" />
-    </LinearLayout>
-</layout>
+            android:background="@color/colorDeliveryLine"/>
+</LinearLayout>
