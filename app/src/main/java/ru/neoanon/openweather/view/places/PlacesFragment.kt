@@ -1,6 +1,7 @@
 package ru.neoanon.openweather.view.places
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_places.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
 import ru.neoanon.openweather.data.source.local.db.location.RegionLocation
+import ru.neoanon.openweather.di.daggerInject
 import ru.neoanon.openweather.utils.clickView
 import ru.neoanon.openweather.utils.searchViewCloseListener
 import ru.neoanon.openweather.utils.searchViewFocusChangeListener
@@ -42,6 +44,11 @@ class PlacesFragment : Fragment() {
     lateinit var locationViewModelFactory: LocationViewModelFactory
     private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var locationViewModel: LocationViewModel
+
+    override fun onAttach(context: Context?) {
+        daggerInject()
+        super.onAttach(context)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_places, container, false)
@@ -80,7 +87,6 @@ class PlacesFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity?.application as App).getAppComponent().inject(this)
 
         weatherViewModel = ViewModelProviders.of(activity!!, weatherViewModelFactory).get(WeatherViewModel::class.java)
 

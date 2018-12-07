@@ -11,6 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_settings.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
+import ru.neoanon.openweather.di.daggerInject
 import ru.neoanon.openweather.model.UnitsOfWeather
 import ru.neoanon.openweather.model.enumerations.PressureType
 import ru.neoanon.openweather.model.enumerations.TempType
@@ -34,6 +35,7 @@ class SettingsActivity : AppCompatActivity() {
     private lateinit var rbPressureHectopascal: RadioButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        daggerInject()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
@@ -82,8 +84,6 @@ class SettingsActivity : AppCompatActivity() {
             )
             overridePendingTransition(R.anim.enter, R.anim.exit)
         }
-
-        (application as App).getAppComponent().inject(this)
 
         settingsViewModel = ViewModelProviders.of(this, settingsViewModelFactory).get(SettingsViewModel::class.java)
 

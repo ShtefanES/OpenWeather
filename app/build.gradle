@@ -25,10 +25,6 @@ android {
         }
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     androidExtensions {
         experimental = true
     }
@@ -68,7 +64,9 @@ dependencies {
     // Dagger dependencies
     def dagger = '2.16'
     kapt "com.google.dagger:dagger-compiler:$dagger"
+    kapt "com.google.dagger:dagger-android-processor:${dagger}"
     implementation "com.google.dagger:dagger:$dagger"
+    implementation "com.google.dagger:dagger-android-support:${dagger}"
     //debugging stetho
     def stetho = '1.5.0'
     implementation "com.facebook.stetho:stetho:$stetho"

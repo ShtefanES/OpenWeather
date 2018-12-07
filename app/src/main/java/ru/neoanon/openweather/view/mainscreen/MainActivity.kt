@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
+import ru.neoanon.openweather.di.daggerInject
 import ru.neoanon.openweather.view.places.PlacesFragment
 import ru.neoanon.openweather.view.settings.SettingsActivity
 import javax.inject.Inject
@@ -30,10 +31,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var weatherViewModelFactory: WeatherViewModelFactory
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        daggerInject()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         drawerLayout = drawer_layout
-        (application as App).getAppComponent().inject(this)
 
         commitFragment(R.id.main_content_frame, MainFragment())
         commitFragment(R.id.navig_content_frame, PlacesFragment())

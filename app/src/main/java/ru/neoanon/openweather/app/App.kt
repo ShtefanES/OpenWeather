@@ -1,17 +1,28 @@
 package ru.neoanon.openweather.app
 
+import android.app.Activity
 import android.app.Application
+import android.support.v4.app.Fragment
 import ru.neoanon.openweather.BuildConfig
 import com.facebook.stetho.Stetho
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import dagger.android.support.HasSupportFragmentInjector
 import ru.neoanon.openweather.utils.logging.ReleaseTree
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  *Created by eshtefan on  08.11.2018.
  */
 
-class App : Application() {
-    private lateinit var appComponent: AppComponent
+class App : Application(), HasActivityInjector, HasSupportFragmentInjector {
+    @Inject
+    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
+
+    @Inject
+    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
 
     override fun onCreate() {
         super.onCreate()
@@ -23,11 +34,14 @@ class App : Application() {
             Timber.plant(ReleaseTree())
         }
 
-        appComponent = DaggerAppComponent
+        DaggerAppComponent
             .builder()
-            .appModule(AppModule(this))
-            .build();
+            .application(this)
+            .build()
+            .inject(this)
     }
 
-    fun getAppComponent(): AppComponent = appComponent
+    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjector
 }

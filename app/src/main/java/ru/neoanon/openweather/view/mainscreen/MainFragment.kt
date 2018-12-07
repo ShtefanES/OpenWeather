@@ -21,6 +21,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
+import ru.neoanon.openweather.di.daggerInject
 import ru.neoanon.openweather.utils.CURRENT_LOCATION_ID
 import ru.neoanon.openweather.view.detailedforecast.ForecastActivity
 import ru.neoanon.openweather.view.detailedforecast.ForecastPagerFragment
@@ -52,12 +53,16 @@ class MainFragment : Fragment() {
     @Inject
     lateinit var weatherViewModelFactory: WeatherViewModelFactory
 
+    override fun onAttach(context: Context?) {
+        daggerInject()
+        super.onAttach(context)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_main, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity?.application as App).getAppComponent().inject(this)
 
         val dailyForecastRecyclerView = view.short_daily_forecast_recycler_view
         dailyForecastRecyclerView.adapter = dailyForecastAdapter

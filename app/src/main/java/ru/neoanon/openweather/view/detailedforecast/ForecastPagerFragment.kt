@@ -1,6 +1,7 @@
 package ru.neoanon.openweather.view.detailedforecast
 
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
@@ -15,6 +16,7 @@ import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
 import kotlinx.android.synthetic.main.fragment_forecast_pager.view.*
 import kotlinx.android.synthetic.main.toolbar_with_tabs_layout.*
+import ru.neoanon.openweather.di.daggerInject
 import javax.inject.Inject
 
 /**
@@ -46,6 +48,11 @@ class ForecastPagerFragment : Fragment() {
     @Inject
     lateinit var forecastViewModelFactory: DailyForecastViewModelFactory
 
+    override fun onAttach(context: Context?) {
+        daggerInject()
+        super.onAttach(context)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val bundle: Bundle? = arguments
@@ -64,7 +71,6 @@ class ForecastPagerFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        (activity?.application as App).getAppComponent().inject(this)
 
         activity?.tab_layout?.setupWithViewPager(viewPager)
 
