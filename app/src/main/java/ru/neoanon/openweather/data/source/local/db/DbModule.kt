@@ -1,7 +1,8 @@
 package ru.neoanon.openweather.data.source.local.db
 
-import android.arch.persistence.room.Room
 import android.content.Context
+import androidx.room.Room
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,14 +12,18 @@ import javax.inject.Singleton
  */
 
 @Module
-class DbModule {
+abstract class DbModule {
 
-    @Singleton
-    @Provides
-    fun providesDbSource(appContext: Context): IDbSource {
-        return DbSource(
-            Room.databaseBuilder(appContext, AppDatabase::class.java, "weather-database")
-                .fallbackToDestructiveMigration().build()
-        )
-    }
+	companion object {
+
+		@Singleton
+		@Provides
+		fun providesAppDatabase(appContext: Context): AppDatabase =
+			Room.databaseBuilder(appContext, AppDatabase::class.java, "weather-database")
+				.fallbackToDestructiveMigration().build()
+	}
+
+	@Singleton
+	@Binds
+	abstract fun providesDbSource(source: DbSource): IDbSource
 }

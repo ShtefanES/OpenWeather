@@ -1,9 +1,9 @@
 package ru.neoanon.openweather.view.detailedforecast
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import ru.neoanon.openweather.R
 import kotlinx.android.synthetic.main.activity_forecast.*
 import kotlinx.android.synthetic.main.toolbar_with_tabs_layout.view.*

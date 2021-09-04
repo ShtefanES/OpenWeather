@@ -1,34 +1,29 @@
 package ru.neoanon.openweather.view.places
 
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.SearchView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.RecyclerView
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_places.view.*
 import ru.neoanon.openweather.R
-import ru.neoanon.openweather.app.App
 import ru.neoanon.openweather.data.source.local.db.location.RegionLocation
-import ru.neoanon.openweather.di.daggerInject
 import ru.neoanon.openweather.utils.clickView
+import ru.neoanon.openweather.utils.mvvm.viewModelDelegate
 import ru.neoanon.openweather.utils.searchViewCloseListener
 import ru.neoanon.openweather.utils.searchViewFocusChangeListener
+import ru.neoanon.openweather.view.MvvmFragment
 import ru.neoanon.openweather.view.mainscreen.WeatherViewModel
-import ru.neoanon.openweather.view.mainscreen.WeatherViewModelFactory
-import javax.inject.Inject
 
 /**
  *Created by eshtefan on  14.11.2018.
  */
 
-class PlacesFragment : Fragment() {
+class PlacesFragment : MvvmFragment() {
     private lateinit var ivArrowBack: ImageView
     private lateinit var placesRecyclerView: RecyclerView
     private lateinit var tvTitle: TextView
@@ -38,17 +33,8 @@ class PlacesFragment : Fragment() {
     private lateinit var placeAdapter: PlaceAdapter
     private val disposable = CompositeDisposable()
 
-    @Inject
-    lateinit var weatherViewModelFactory: WeatherViewModelFactory
-    @Inject
-    lateinit var locationViewModelFactory: LocationViewModelFactory
-    private lateinit var weatherViewModel: WeatherViewModel
-    private lateinit var locationViewModel: LocationViewModel
-
-    override fun onAttach(context: Context?) {
-        daggerInject()
-        super.onAttach(context)
-    }
+    private val weatherViewModel: WeatherViewModel by viewModelDelegate()
+    private val locationViewModel: LocationViewModel by viewModelDelegate()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_places, container, false)
@@ -83,15 +69,6 @@ class PlacesFragment : Fragment() {
             )
         })
         placesRecyclerView.adapter = placeAdapter
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        weatherViewModel = ViewModelProviders.of(activity!!, weatherViewModelFactory).get(WeatherViewModel::class.java)
-
-        locationViewModel =
-                ViewModelProviders.of(activity!!, locationViewModelFactory).get(LocationViewModel::class.java)
     }
 
     override fun onStart() {

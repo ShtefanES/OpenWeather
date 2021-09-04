@@ -1,7 +1,7 @@
 package ru.neoanon.openweather.utils
 
-import android.support.v7.widget.SearchView
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import io.reactivex.Observable
 import ru.neoanon.openweather.view.places.LocationViewModel
 

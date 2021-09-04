@@ -1,14 +1,15 @@
 package ru.neoanon.openweather.view.detailedforecast
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.model.DailyForecastItem
 import kotlinx.android.synthetic.main.fragment_daily_forecast_item.view.*
+import ru.neoanon.openweather.utils.args
 
 /**
  *Created by eshtefan on  13.11.2018.
@@ -16,15 +17,14 @@ import kotlinx.android.synthetic.main.fragment_daily_forecast_item.view.*
 
 class ForecastItemFragment : Fragment() {
     companion object {
-        private const val FORECAST_ITEM_KEY = "forecastItemKey"
 
-        fun newInstance(item: DailyForecastItem): ForecastItemFragment {
-            val args = Bundle()
-            val f = ForecastItemFragment()
-            args.putParcelable(FORECAST_ITEM_KEY, item)
-            f.arguments = args
-            return f
-        }
+        fun newInstance(item: DailyForecastItem): ForecastItemFragment =
+            ForecastItemFragment().apply {
+                Bundle().also { bundle ->
+                    bundle.dailyForecastItem = item
+                    arguments = bundle
+                }
+            }
     }
 
     private lateinit var dailyForecastItem: DailyForecastItem
@@ -35,7 +35,7 @@ class ForecastItemFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        dailyForecastItem = arguments?.getParcelable(FORECAST_ITEM_KEY) as DailyForecastItem
+        dailyForecastItem = args.dailyForecastItem
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =

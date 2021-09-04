@@ -1,37 +1,32 @@
 package ru.neoanon.openweather.view.mainscreen
 
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.view.GravityCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.ActionBarDrawerToggle
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
-import ru.neoanon.openweather.di.daggerInject
+import ru.neoanon.openweather.utils.mvvm.viewModelDelegate
+import ru.neoanon.openweather.view.MvvmActivity
 import ru.neoanon.openweather.view.places.PlacesFragment
 import ru.neoanon.openweather.view.settings.SettingsActivity
-import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : MvvmActivity() {
     private val disposable = CompositeDisposable()
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var weatherViewModel: WeatherViewModel
 
-    @Inject
-    lateinit var weatherViewModelFactory: WeatherViewModelFactory
+    private val weatherViewModel: WeatherViewModel by viewModelDelegate()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        daggerInject()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         drawerLayout = drawer_layout
@@ -41,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         val toolbar = toolbar_container.toolbar
         setSupportActionBar(toolbar)
         initNavigationDrawer(drawerLayout, toolbar)
-
-        weatherViewModel = ViewModelProviders.of(this, weatherViewModelFactory).get(WeatherViewModel::class.java)
     }
 
     override fun onStart() {

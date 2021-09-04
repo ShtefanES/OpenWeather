@@ -1,28 +1,28 @@
 package ru.neoanon.openweather.view.mainscreen
 
 import android.Manifest
-import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat.checkSelfPermission
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AlertDialog
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.checkSelfPermission
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_main.view.*
 import ru.neoanon.openweather.R
 import ru.neoanon.openweather.app.App
-import ru.neoanon.openweather.di.daggerInject
 import ru.neoanon.openweather.utils.CURRENT_LOCATION_ID
+import ru.neoanon.openweather.utils.mvvm.viewModelDelegate
+import ru.neoanon.openweather.view.MvvmFragment
 import ru.neoanon.openweather.view.detailedforecast.ForecastActivity
 import ru.neoanon.openweather.view.detailedforecast.ForecastPagerFragment
 import timber.log.Timber
@@ -32,13 +32,12 @@ import javax.inject.Inject
  *Created by eshtefan on  13.11.2018.
  */
 
-class MainFragment : Fragment() {
+class MainFragment : MvvmFragment() {
     private val REQUEST_PERMISSIONS_REQUEST_CODE = 101
     private val disposable = CompositeDisposable()
     private val weatherDisposable = CompositeDisposable()
 
     private var selectedRegionId = 0L
-    private lateinit var weatherViewModel: WeatherViewModel
     private lateinit var swipeRefresh: SwipeRefreshLayout
     private lateinit var tvTemp: TextView
     private lateinit var iconWeather: ImageView
@@ -50,13 +49,8 @@ class MainFragment : Fragment() {
     lateinit var dailyForecastAdapter: DailyForecastAdapter
     @Inject
     lateinit var hourlyForecastAdapter: HourlyForecastAdapter
-    @Inject
-    lateinit var weatherViewModelFactory: WeatherViewModelFactory
 
-    override fun onAttach(context: Context?) {
-        daggerInject()
-        super.onAttach(context)
-    }
+    private val weatherViewModel: WeatherViewModel by viewModelDelegate()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
         inflater.inflate(R.layout.fragment_main, container, false)
@@ -86,8 +80,6 @@ class MainFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        weatherViewModel = ViewModelProviders.of(activity!!, weatherViewModelFactory).get(WeatherViewModel::class.java)
 
         dailyForecastAdapter.clickListener = { position ->
             if (swipeRefresh.isRefreshing) {
@@ -124,8 +116,8 @@ class MainFragment : Fragment() {
             .subscribe { integer -> showMessage(integer) })
 
         if (selectedRegionId == CURRENT_LOCATION_ID) {
-            if (isPermissionDenied(activity!!)) {
-                requestPermission(activity!!)
+            if (isPermissionDenied(requireContext())) {
+                requestPermission(requireContext())
             } else {
                 weatherViewModel.isAllowedToGetCurrentLocation(true)
                 subscribeToData(selectedRegionId)
@@ -138,8 +130,8 @@ class MainFragment : Fragment() {
 
         swipeRefresh.setOnRefreshListener {
             if (selectedRegionId == CURRENT_LOCATION_ID) {
-                if (isPermissionDenied(activity!!)) {
-                    requestPermission(activity!!)
+                if (isPermissionDenied(requireContext())) {
+                    requestPermission(requireContext())
                 } else {
                     weatherViewModel.isAllowedToGetCurrentLocation(true)
                     subscribeToData(selectedRegionId)

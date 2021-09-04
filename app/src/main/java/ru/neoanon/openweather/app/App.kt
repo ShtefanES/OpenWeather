@@ -2,13 +2,12 @@ package ru.neoanon.openweather.app
 
 import android.app.Activity
 import android.app.Application
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import ru.neoanon.openweather.BuildConfig
 import com.facebook.stetho.Stetho
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.HasSupportFragmentInjector
+import dagger.android.HasAndroidInjector
 import ru.neoanon.openweather.utils.logging.ReleaseTree
 import timber.log.Timber
 import javax.inject.Inject
@@ -17,12 +16,9 @@ import javax.inject.Inject
  *Created by eshtefan on  08.11.2018.
  */
 
-class App : Application(), HasActivityInjector, HasSupportFragmentInjector {
+class App : Application(), HasAndroidInjector {
     @Inject
-    lateinit var activityInjector: DispatchingAndroidInjector<Activity>
-
-    @Inject
-    lateinit var supportFragmentInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate() {
         super.onCreate()
@@ -34,14 +30,12 @@ class App : Application(), HasActivityInjector, HasSupportFragmentInjector {
             Timber.plant(ReleaseTree())
         }
 
-        DaggerAppComponent
-            .builder()
+        DaggerAppComponent.builder()
             .application(this)
             .build()
             .inject(this)
     }
 
-    override fun activityInjector(): AndroidInjector<Activity> = activityInjector
-
-    override fun supportFragmentInjector(): AndroidInjector<Fragment> = supportFragmentInjector
+    override fun androidInjector(): AndroidInjector<Any> =
+        dispatchingAndroidInjector
 }

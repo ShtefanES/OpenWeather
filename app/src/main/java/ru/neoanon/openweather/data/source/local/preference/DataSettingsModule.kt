@@ -11,7 +11,7 @@ import javax.inject.Singleton
  */
 
 @Module
-class SettingsModule {
+class DataSettingsModule {
     private val MAIN_PREFERENCES = "mainPreferences"
 
     @Singleton

@@ -1,29 +1,24 @@
 package ru.neoanon.openweather.view.detailedforecast
 
-import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.TabLayout
-import android.support.v4.app.Fragment
-import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.viewpager.widget.ViewPager
 import io.reactivex.disposables.CompositeDisposable
 import ru.neoanon.openweather.R
-import ru.neoanon.openweather.app.App
 import kotlinx.android.synthetic.main.fragment_forecast_pager.view.*
 import kotlinx.android.synthetic.main.toolbar_with_tabs_layout.*
-import ru.neoanon.openweather.di.daggerInject
-import javax.inject.Inject
+import ru.neoanon.openweather.utils.mvvm.viewModelDelegate
+import ru.neoanon.openweather.view.MvvmFragment
 
 /**
  *Created by eshtefan on  13.11.2018.
  */
 
-class ForecastPagerFragment : Fragment() {
+class ForecastPagerFragment : MvvmFragment() {
     companion object {
         const val FORECAST_POSITION_KEY = "forecastPositionKey"
         const val REGION_ID_KEY = "regionIdKey"
@@ -45,13 +40,7 @@ class ForecastPagerFragment : Fragment() {
     private lateinit var progressBar: ProgressBar
     private lateinit var pagerAdapter: PagerForecastAdapter
 
-    @Inject
-    lateinit var forecastViewModelFactory: DailyForecastViewModelFactory
-
-    override fun onAttach(context: Context?) {
-        daggerInject()
-        super.onAttach(context)
-    }
+    private val forecastViewModel: DailyForecastViewModel by viewModelDelegate()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,9 +62,6 @@ class ForecastPagerFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         activity?.tab_layout?.setupWithViewPager(viewPager)
-
-        val forecastViewModel =
-            ViewModelProviders.of(activity!!, forecastViewModelFactory).get(DailyForecastViewModel::class.java)
 
         disposable.add(forecastViewModel.progress
             .subscribe { aBoolean -> progressBar.visibility = if (aBoolean) View.VISIBLE else View.GONE })

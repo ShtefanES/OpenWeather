@@ -18,7 +18,7 @@
             android:textSize="16sp"/>
 
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/temp_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,9 +74,9 @@
                     android:textColor="@color/colorUncheckedText"
                     android:textSize="18sp"/>
         </RadioGroup>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/pressure_block"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
                     android:textColor="@color/colorUncheckedText"
                     android:textSize="18sp"/>
         </RadioGroup>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View
             android:layout_width="match_parent"

@@ -1,7 +1,7 @@
 package ru.neoanon.openweather.data.source.local.db
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import ru.neoanon.openweather.data.source.local.db.currentweather.CurrentWeather
 import ru.neoanon.openweather.data.source.local.db.currentweather.CurrentWeatherDao
 import ru.neoanon.openweather.data.source.local.db.dailyforecast.DailyForecast

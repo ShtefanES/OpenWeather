@@ -7,10 +7,13 @@ import dagger.android.support.AndroidSupportInjectionModule
 import ru.neoanon.openweather.data.source.RepoModule
 import ru.neoanon.openweather.data.source.geodata.LocationModule
 import ru.neoanon.openweather.data.source.local.db.DbModule
-import ru.neoanon.openweather.data.source.local.preference.SettingsModule
+import ru.neoanon.openweather.data.source.local.preference.DataSettingsModule
 import ru.neoanon.openweather.data.source.remote.OwmApiModule
-import ru.neoanon.openweather.di.ActivityModules
-import ru.neoanon.openweather.di.FragmentModules
+import ru.neoanon.openweather.di.MainModules
+import ru.neoanon.openweather.di.DailyForecastModule
+import ru.neoanon.openweather.di.MainWeatherModule
+import ru.neoanon.openweather.di.PlacesModule
+import ru.neoanon.openweather.di.SettingsModule
 import ru.neoanon.openweather.utils.LocaleModule
 import javax.inject.Singleton
 
@@ -19,8 +22,21 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = [AppModule::class, OwmApiModule::class, DbModule::class, SettingsModule::class, LocationModule::class,
-    LocaleModule::class, RepoModule::class, AndroidSupportInjectionModule::class, ActivityModules::class, FragmentModules::class])
+@Component(modules = [
+    AppModule::class,
+    OwmApiModule::class,
+    DbModule::class,
+    DataSettingsModule::class,
+    LocationModule::class,
+    LocaleModule::class,
+    RepoModule::class,
+    AndroidSupportInjectionModule::class,
+    MainModules::class,
+    SettingsModule::class,
+    MainWeatherModule::class,
+    PlacesModule::class,
+    DailyForecastModule::class,
+])
 interface AppComponent {
     @Component.Builder
     interface Builder{

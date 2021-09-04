@@ -1,10 +1,9 @@
 package ru.neoanon.openweather.view.aboutapp
 
-
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import ru.neoanon.openweather.BuildConfig
 import ru.neoanon.openweather.R
 import kotlinx.android.synthetic.main.activity_about_app.*
@@ -33,7 +32,7 @@ class AboutAppActivity : AppCompatActivity() {
         overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean =
+    override fun onOptionsItemSelected(item: MenuItem): Boolean =
         when (item?.itemId) {
             android.R.id.home -> {
                 onBackPressed()
